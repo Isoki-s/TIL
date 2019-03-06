@@ -1,0 +1,57 @@
+
+# コンポーネント名を動的につくる
+- iconをコンポーネントとして定義する。コンポーネント名を<icon-hoge>で出力したい。
+- iconの導入については公式にあるものを使用してみる
+- https://jp.vuejs.org/v2/cookbook/editable-svg-icons.html
+
+
+```
+<template lang="pug">
+  section
+    header
+      h1 コンポーネント名を動的につくる　dataから取得
+    .content
+      .hoge(v-for="list in lists" :key="list.id")
+        p {{list.name}}
+        icon-base(:icon-name='list.icon' width="16" height="16")
+          components(:is=`"icon-" + list.icontype` :fill="list.color")
+</template>
+
+<script>
+import IconBase from './IconBase'
+import IconDesigner from './IconDesigner'
+import IconFrontendengineer from './IconFrontendengineer'
+import IconBackendengineer from './IconBackendengineer'
+
+export default {
+  components: {
+    IconBase,
+    IconDesigner,
+    IconFrontendengineer,
+    IconBackendengineer
+  },
+  data () {
+    return {
+      list: [
+        {
+          "name": "taro",
+          "age": "10",
+          "icontype" : "Designer"
+        },
+        {
+          "name": "hanako",
+          "age": "20",
+          "icontype" : "Frontendengineer"
+        },
+        {
+          "name": "satoru",
+          "age": "30",
+          "icontype" : "Backendengineer"
+        }
+      ]
+    }
+  }
+}
+</script>
+
+```
