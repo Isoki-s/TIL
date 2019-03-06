@@ -1,0 +1,1 @@
+# Sketchでsvg書きだし
